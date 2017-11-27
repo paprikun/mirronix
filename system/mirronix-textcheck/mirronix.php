@@ -1,7 +1,7 @@
 <?php
 function MirronixTextСheck($text, $lang){
 $error = array('err','critical');
-$filepath = $_SERVER['DOCUMENT_ROOT'].'/mirronix/system/mirronix-textcheck/'.$lang.'/';
+$filepath = $_SERVER['DOCUMENT_ROOT'].'/system/mirronix-textcheck/'.$lang.'/';
 //путь к ругательствам, регистро независим
 $curses_text = file_get_contents($filepath.'curses.txt');
 //путь к предложениям интим услуг регистро независим
