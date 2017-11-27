@@ -1,7 +1,7 @@
 <?php
 function MirronixTextСheck($text, $lang){
 $error = array('err','critical');
-$filepath = $_SERVER['DOCUMENT_ROOT'].'/system/mirronix-textcheck/'.$lang.'/';
+$filepath = $_SERVER['DOCUMENT_ROOT'].'/mirronix/system/mirronix-textcheck/'.$lang.'/';
 //путь к ругательствам, регистро независим
 $curses_text = file_get_contents($filepath.'curses.txt');
 //путь к предложениям интим услуг регистро независим
@@ -34,13 +34,13 @@ if (!empty($text)) {
 				}else if (preg_match($prostitution_text,$text)){
 					$error['msg'] =  'Извините, у нас запрещена проституция' ;
 					$error['critical'] = 1; 
-				}else if (preg_match('/('.$dogs_text.')([\s]+|-+|)([a-z]+)([\s]+|-+|)('.$points_text.')([\s]+|-+|)([a-z]+)/iu', $text)){
+				}else if (preg_match('/('.$dogs_text.'|@)([\s]+|-+|)([А-Яа-я\w]+)([\s]+|-+|)('.$points_text.')([\s]+|-+|)([А-Яа-я\w])/iu', $text)){
 					$error['msg'] =  'Извините, у нас запрещено публиковать любые личные контакты и е-мейлы';
 					$error['critical'] = 1; 
 				}else if (preg_match('/[\'\^\[\]]/', $text)){
 					$error['msg'] =  'Вы используете странные символы. Пишите на русском языке;';
 					$error['critical'] = 1;
-				}else if (preg_match('/(www)([\s]+|-+|)('.$points_text.')([\s]+|-+|)([a-z]+)([\s]+|-+|)('.$points_text.')([\s]+|-+|)([a-z]+)/iu', $text)){
+				}else if (preg_match('/(www)([\s]+|-+|)('.$points_text.')([\s]+|-+|)([А-Яа-я\w]+)([\s]+|-+|)('.$points_text.')([\s]+|-+|)([А-Яа-я\w]+)/iu', $text)){
 					$error['msg'] =  'Извините, у нас запрещено публиковать ссылки на чужие сайты';
 					$error['critical'] = 1;
 				}else if (preg_match('/((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}/', $text)){
